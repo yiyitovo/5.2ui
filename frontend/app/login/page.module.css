@@ -1,0 +1,91 @@
+/* app/login/page.module.css */
+.container {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #1a2a3a 0%, #0d1117 100%);
+    color: white;
+  }
+  
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4eacfe 0%, #a56cfe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .primaryButton {
+    background: linear-gradient(90deg, #4eacfe 0%, #a56cfe 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .secondaryButton {
+    background: transparent;
+    color: #4eacfe;
+    border: 2px solid #4eacfe;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .primaryButton:hover, .secondaryButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .connected {
+    background: rgba(78, 172, 254, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(78, 172, 254, 0.3);
+  }
+
+  .back {
+    cursor: pointer;
+    color: #aaa;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .back:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .error {
+    color: #ff6b6b;
+    margin-top: 1rem;
+  }
