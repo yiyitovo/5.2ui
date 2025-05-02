@@ -163,78 +163,81 @@ export default function UserPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-[#1a2a3a] to-[#0d1117] text-white py-12 px-6 transition-all duration-500 ease-in-out">
-      <div className="max-w-4xl mx-auto bg-white text-gray-900 rounded-3xl shadow-2xl p-8">
-        {/* Current Interest Rate */}
+    <div className="min-h-screen bg-gradient-to-tr from-[#f9fafb] to-white text-gray-900 pt-3 pb-12 transition-all duration-500 ease-in-out">
+      <div className="max-w-6xl mx-auto bg-white text-gray-900 rounded-3xl shadow-xl p-10 border border-gray-200">
+  
+        {/* 当前利率 */}
         {interestRate !== null && (
-          <div className="text-center text-xl font-bold mb-6">
+          <div className="text-center text-2xl font-bold mb-8">
             Current Interest Rate: <span className="text-indigo-600">{interestRate}%</span>
           </div>
         )}
-
-        <ConnectWallet />
-
-        {/* View Vault Info */}
-        <div className="text-center mt-4">
+  
+        {/* 顶部操作按钮 */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <ConnectWallet />
           <button
             onClick={handleRead}
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
           >
             View Vault Info
           </button>
         </div>
-
+  
         {/* Vault Info Modal */}
         {showVaultInfo && (
-          <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
-            <div className="bg-white text-gray-900 p-8 rounded-2xl shadow-2xl transform transition-transform duration-500 scale-95 hover:scale-100 w-[90%] max-w-lg relative">
+          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex justify-center items-center z-50">
+            <div className="bg-gradient-to-br from-white to-gray-50 text-gray-900 px-12 py-12 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.3)] w-[95%] max-w-2xl relative border border-gray-200">
               <button
                 onClick={() => setShowVaultInfo(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-black"
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition"
               >
                 <X className="w-6 h-6" />
               </button>
-              <h3 className="text-2xl font-bold mb-6 text-center text-indigo-700">Vault Summary</h3>
-              <div className="space-y-4">
-                <p className="flex items-center gap-2">
-                  <Coins className="w-5 h-5 text-green-600" />
-                  <span>Collateral: <strong>{collateral ?? "-"} ETH</strong></span>
+              <h3 className="text-3xl font-extrabold mb-8 text-center text-blue-500 tracking-tight">
+                Vault Summary
+              </h3>
+              <div className="space-y-5 text-[15px]">
+                <p className="flex items-center gap-3">
+                  <Coins className="w-5 h-5 text-blue-500" />
+                  Collateral: <strong className="ml-auto">{collateral ?? "-"}</strong>
                 </p>
-                <p className="flex items-center gap-2">
-                  <ArrowDownCircle className="w-5 h-5 text-red-600" />
-                  <span>Debt: <strong>{debt ?? "-"} DAI</strong></span>
+                <p className="flex items-center gap-3">
+                  <ArrowDownCircle className="w-5 h-5 text-blue-500" />
+                  Debt: <strong className="ml-auto">{debt ?? "-"}</strong>
                 </p>
                 {healthFactor && (
-                  <p className="flex items-center gap-2">
+                  <p className="flex items-center gap-3">
                     <Shield className="w-5 h-5 text-blue-500" />
-                    <span>Health Factor: <strong>{Number(healthFactor).toFixed(4)}</strong></span>
+                    Health Factor: <strong className="ml-auto">{Number(healthFactor).toFixed(4)}</strong>
                   </p>
                 )}
                 {parseFloat(healthFactor || "0") < 1.2 && (
-                  <p className="text-sm text-red-600 font-semibold">
+                  <div className="text-sm text-red-600 font-medium bg-red-50 border border-red-200 px-3 py-2 rounded-xl">
                     ⚠️ Your vault is at risk. Please repay or add collateral.
-                  </p>
+                  </div>
                 )}
-                <p className="flex items-center gap-2">
-                  <Coins className="w-5 h-5 text-green-500" />
-                  <span>Collateral Value: <strong>{collateralValue ? Number(collateralValue).toFixed(2) : "—"} USD</strong></span>
+                <p className="flex items-center gap-3">
+                  <Coins className="w-5 h-5 text-blue-500" />
+                  Collateral Value: <strong className="ml-auto">{collateralValue ? Number(collateralValue).toFixed(2) : "—"} USD</strong>
                 </p>
-                <p className="flex items-center gap-2">
-                  <ArrowDownCircle className="w-5 h-5 text-red-500" />
-                  <span>Debt Value: <strong>{debtValue ? Number(debtValue).toFixed(2) : "—"} USD</strong></span>
+                <p className="flex items-center gap-3">
+                  <ArrowDownCircle className="w-5 h-5 text-blue-500" />
+                  Debt Value: <strong className="ml-auto">{debtValue ? Number(debtValue).toFixed(2) : "—"} USD</strong>
                 </p>
-                <p className="flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                  <span>Undercollateralized: <strong>{isUndercollateralized === null ? "—" : isUndercollateralized ? "Yes" : "No"}</strong></span>
+                <p className="flex items-center gap-3">
+                  <AlertTriangle className="w-5 h-5 text-blue-500" />
+                  Undercollateralized: <strong className="ml-auto">{isUndercollateralized ? "Yes" : "No"}</strong>
                 </p>
               </div>
             </div>
           </div>
         )}
-
-        {/* Deposit */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          <div>
+  
+        {/* Deposit + Borrow */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* Deposit ETH */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium mb-1">ETH to Deposit</label>
             <div className="flex">
               <input
@@ -242,21 +245,21 @@ export default function UserPage() {
                 placeholder="ETH amount"
                 value={depositAmount}
                 onChange={(e) => setDepositAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
+                className="w-full h-12 px-4 border border-gray-300 text-sm rounded-l bg-white text-gray-900"
               />
               <button
                 onClick={handleDeposit}
                 disabled={!depositAmount}
-                className="px-4 bg-green-500 text-white rounded-r hover:bg-green-600"
+                className="h-12 w-36 text-sm bg-green-500 text-white rounded-r hover:bg-green-600 transition"
               >
                 Deposit ETH
               </button>
             </div>
             <p className="text-sm text-gray-600 mt-1">You are earning <strong>0.00% APY</strong></p>
           </div>
-
-          {/* Borrow */}
-          <div>
+  
+          {/* Borrow DAI */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium mb-1">DAI to Borrow</label>
             <div className="flex">
               <input
@@ -264,20 +267,23 @@ export default function UserPage() {
                 placeholder="DAI amount"
                 value={borrowAmount}
                 onChange={(e) => setBorrowAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
+                className="w-full h-12 px-4 border border-gray-300 text-sm rounded-l bg-white text-gray-900"
               />
               <button
                 onClick={handleBorrow}
                 disabled={!borrowAmount}
-                className="px-4 bg-purple-500 text-white rounded-r hover:bg-purple-600"
+                className="h-12 w-36 text-sm bg-purple-500 text-white rounded-r hover:bg-purple-600 transition"
               >
                 Borrow DAI
               </button>
             </div>
           </div>
-
-          {/* Repay */}
-          <div>
+        </div>
+  
+        {/* Repay + Withdraw */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* Repay DAI */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium mb-1">DAI to Repay</label>
             <div className="flex">
               <input
@@ -285,20 +291,20 @@ export default function UserPage() {
                 placeholder="Repay DAI amount"
                 value={repayAmount}
                 onChange={(e) => setRepayAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
+                className="w-full h-12 px-4 border border-gray-300 text-sm rounded-l bg-white text-gray-900"
               />
               <button
                 onClick={handleRepay}
                 disabled={!repayAmount}
-                className="px-4 bg-red-500 text-white rounded-r hover:bg-red-600"
+                className="h-12 w-36 text-sm bg-red-500 text-white rounded-r hover:bg-red-600 transition"
               >
                 Repay DAI
               </button>
             </div>
           </div>
-
-          {/* Withdraw */}
-          <div>
+  
+          {/* Withdraw ETH */}
+          <div className="flex flex-col">
             <label className="block text-sm font-medium mb-1">ETH to Withdraw</label>
             <div className="flex">
               <input
@@ -306,28 +312,29 @@ export default function UserPage() {
                 placeholder="Withdraw ETH amount"
                 value={withdrawAmount}
                 onChange={(e) => setWithdrawAmount(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l"
+                className="w-full h-12 px-4 border border-gray-300 text-sm rounded-l bg-white text-gray-900"
               />
               <button
                 onClick={handleWithdraw}
                 disabled={!withdrawAmount}
-                className="px-4 bg-yellow-500 text-white rounded-r hover:bg-yellow-600"
+                className="h-12 w-36 text-sm bg-yellow-500 text-white rounded-r hover:bg-yellow-600 transition"
               >
                 Withdraw ETH
               </button>
             </div>
           </div>
         </div>
-
-        {/* Liquidate Button */}
-        <div className="text-center mt-8">
+  
+        {/* Liquidate */}
+        <div className="mt-10">
           <button
             onClick={handleLiquidate}
-            className="px-6 py-3 bg-red-600 text-white rounded hover:bg-red-700"
+            className="px-6 py-3 bg-red-600 text-white rounded hover:bg-red-700 transition"
           >
             Liquidate Vault
           </button>
         </div>
+  
       </div>
     </div>
   );

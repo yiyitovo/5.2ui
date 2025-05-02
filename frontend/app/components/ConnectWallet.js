@@ -31,13 +31,13 @@ export default function ConnectWallet() {
   };
 
   return (
-    <div className="p-4 space-y-2">
+    <div>
       {walletAddress ? (
-        <div>
-          <p className="text-sm mb-1">Connected: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p>
+        <div className="flex flex-col items-start gap-2">
+          <p className="text-sm">Connected: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p>
           <button
             onClick={disconnectWallet}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Disconnect Wallet
           </button>
@@ -45,7 +45,7 @@ export default function ConnectWallet() {
       ) : (
         <button
           onClick={connectWallet}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         >
           Connect Wallet
         </button>
